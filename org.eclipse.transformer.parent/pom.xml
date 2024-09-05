@@ -85,6 +85,17 @@
 		</mailingList>
 	</mailingLists>
 
+	<pluginRepositories>
+		<pluginRepository>
+			<id>dash-licenses-releases</id>
+			<url>https://repo.eclipse.org/content/repositories/dash-licenses-releases</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -378,6 +389,20 @@ SPDX-License-Identifier: ${project.licenses[0].name}
 					<artifactId>plexus-component-metadata</artifactId>
 					<version>2.2.0</version>
 				</plugin>
+				<plugin>
+					<groupId>org.eclipse.dash</groupId>
+					<artifactId>license-tool-plugin</artifactId>
+					<version>1.1.0</version>
+					<executions>
+						<execution>
+							<id>license-check</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>license-check</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 		<plugins>
@@ -412,6 +437,10 @@ SPDX-License-Identifier: ${project.licenses[0].name}
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>flatten-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.dash</groupId>
+				<artifactId>license-tool-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
